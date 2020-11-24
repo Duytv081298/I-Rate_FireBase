@@ -25,10 +25,10 @@
     "cordova-plugin-globalization": {
       "PACKAGE_NAME": "com.phonegap.helloworld"
     },
-    "cordova-plugin-media-capture": {
+    "cordova-plugin-inappbrowser": {
       "PACKAGE_NAME": "com.phonegap.helloworld"
     },
-    "cordova-plugin-inappbrowser": {
+    "cordova-plugin-media-capture": {
       "PACKAGE_NAME": "com.phonegap.helloworld"
     },
     "cordova-plugin-network-information": {

@@ -24,40 +24,37 @@
 </head>
 
 <body class="container-fluid">
-  <p class="h4 text-center bg-primary fixed-top text-white py-2">Event</p>
-  <div class="row vh-100">
-    <div class="col-12 align-self-center">
-      <div class="row justify-content-center">
-        <button type="button" class="btn btn-primary col-8 my-3" onclick="showAlert();">Show notification</button>
-        <button type="button" class="btn btn-info col-8 my-3" onclick="showBeeps();">Show beep</button>
-        <button type="button" class="btn btn-warning col-8 my-3" onclick="showVibration();">Show vibration</button>
+  <div id="header" class="fixed-top shadow-lg rounded " style="background-color: #fbfaff;"></div>
+  <div class="mt-5 pt-3">
+    <p class="h4 text-center text-white mt-3 p-2" style="background-color: #646fcb; border-radius: 5px;">Event</p>
+  </div>
+  <div id="content" class="m-0 mb-5 pb-4">
+    <div class="row" style="height: 50vh;">
+      <div class="col-12 align-self-center">
+        <div class="row justify-content-center">
+          <button type="button" class="btn btn-primary col-8 my-3" onclick="showAlert();">Show notification</button>
+          <button type="button" class="btn btn-info col-8 my-3" onclick="showBeeps();">Show beep</button>
+          <button type="button" class="btn btn-warning col-8 my-3" onclick="showVibration();">Show vibration</button>
+        </div>
       </div>
     </div>
   </div>
-
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
     crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
     crossorigin="anonymous"></script>
-    
-    <script type="text/javascript" src="js/navigator.js"></script>
+
+  <script type="text/javascript" src="js/navigator.js"></script>
+  <script type="text/javascript" src="js/header.js"></script>
+  <script type="text/javascript" src="js/footer.js"></script>
+
 </body>
-<footer class="fixed-bottom  text-center bg-white">
-  <div class="row pt-1 justify-content-center" >
-      <div class="col-3 align-self-center text-secondary" onclick="goToFeedback()">
-          <i class="fa fa-pencil" style="font-size:25px"></i>
-          <p class="m-0" style="font-size: xx-small; font-weight: bold;">Feedback</p>
-      </div>
-      <div class="col-3 align-self-center text-secondary" onclick="goToHome()">
-          <i class="fa fa-home " style="font-size:30px"></i>
-          <p class="m-0" style="font-size: xx-small; font-weight: bold;">Home</p>
-      </div>
-      <div class="col-3 align-self-center text-danger" onclick="goToNotification()">
-          <i class="fa fa-calendar-check-o" style="font-size:32px"></i>
-          <p class="m-0" style="font-size: x-small; font-weight: bold;">Event</p>
-      </div>
-  </div>
-</footer>
+<footer class="fixed-bottom  text-center bg-white" id="footer"></footer>
+<script>
+  renderHeader()
+  renderFooter()
+</script>
+
 </html>

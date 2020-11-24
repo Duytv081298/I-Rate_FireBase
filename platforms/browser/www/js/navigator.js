@@ -5,8 +5,11 @@ function goToFeedback(){
     window.location.href = "FeedBack.html";
 }
 function goToHome() {
-    window.location.href = "home.html";
+    window.location.href = "Home.html";
 }
-function goToNotification() {
+function goToProfile() {
+    window.location.href = "Profile.html";
+}
+function goToNotification(){
     window.location.href = "Notification.html";
 }

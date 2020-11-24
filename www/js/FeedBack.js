@@ -1,37 +1,96 @@
-var db = window.openDatabase("i-Rate", "1.0", "iRate database", 1000000);
+
 var service_Rating = 5
 var cleanliness_Rating = 5
 var food_Quality_Rating = 5
+var feedback = []
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
     renderRating()
 }
 function insertData() {
     if (validation()) {
-        confirmData()
+        var ReporterName = document.getElementById("reporter_name").value
+        var RestaurantName = document.getElementById("restaurant_Name").value
+        var RestaurantType = document.getElementById("restaurant_Type").value
+        var VisitDate = document.getElementById("time_visit").value
+        var AvarageMealPrice = document.getElementById("price").value
+        var ServiceRating = service_Rating
+        var CleanlinessRating = cleanliness_Rating
+        var FoodQualityRating = food_Quality_Rating
+        var Notes = document.getElementById("note").value
+
+        feedback = [RestaurantName, RestaurantType, VisitDate, AvarageMealPrice,
+            ServiceRating, CleanlinessRating, FoodQualityRating, Notes, ReporterName, user.email]
+
+        document.getElementById("Add_Feedback").setAttribute("data-toggle", "modal");
+        document.getElementById("Add_Feedback").setAttribute("data-target", "#exampleModal");
+        document.getElementById("addConfirm").innerHTML = `
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-center" id="exampleModalLabel">Response by `+ ReporterName + `</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table table-borderless">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Restaurant Name</th>
+                                        <td>`+ RestaurantName + `</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Restaurant type</th>
+                                        <td>`+ RestaurantType + `</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Date and time of the visit</th>
+                                        <td>`+ VisitDate + `</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Average meal price per person</th>
+                                        <td>`+ AvarageMealPrice + `</td>
+                                    </tr>
+                                    <tr>    
+                                        <th scope="row">Service rating</th>
+                                        <td>`+ ServiceRating + ` <i class="fa fa-star" style="font-size:20px;color:#0099FF"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Cleanliness rating</th>
+                                        <td>`+ cleanliness_Rating + ` <i class="fa fa-star" style="font-size:20px;color:#0099FF"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Food quality rating</th>
+                                        <td>`+ CleanlinessRating + ` <i class="fa fa-star" style="font-size:20px;color:#0099FF"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Notes</th>
+                                        <td>`+ Notes + `</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button onclick="confirmData()" type="button" class="btn btn-primary">Add Feedback</button>
+                        </div>
+                    </div>
+                </div>
+            </div>`
     }
 }
 function insertFeedback(tx) {
-    var ReporterName = document.getElementById("reporter_name").value
-    var RestaurantName = document.getElementById("restaurant_Name").value
-    var RestaurantType = document.getElementById("restaurant_Type").value
-    var VisitDate = document.getElementById("time_visit").value
-    var AvarageMealPrice = document.getElementById("price").value
-    var ServiceRating = service_Rating
-    var CleanlinessRating = cleanliness_Rating
-    var FoodQualityRating = food_Quality_Rating
-    var Notes = document.getElementById("note").value
-
-    var executeQuery = "INSERT INTO iRate (RestaurantName,RestaurantType, VisitDate,AvarageMealPrice, " +
-        " ServiceRating, CleanlinessRating, FoodQualityRating,Notes, ReporterName) VALUES (?,?,?,?,?,?,?,?,?)";
-    tx.executeSql(executeQuery, [RestaurantName, RestaurantType, VisitDate, AvarageMealPrice,
-        ServiceRating, CleanlinessRating, FoodQualityRating, Notes, ReporterName])
+    var executeQuery = `INSERT INTO iRate (RestaurantName, RestaurantType, VisitDate, AvarageMealPrice, 
+         ServiceRating, CleanlinessRating, FoodQualityRating, Notes, ReporterName, Email) VALUES (?,?,?,?,?,?,?,?,?,?)`;
+    tx.executeSql(executeQuery, feedback)
 }
 function errorCB(err) {
     alert("Error processing SQL: " + err.code);
 }
 function successCB() {
-    window.location.href = "home.html"
+    window.location.href = "Home.html"
 }
 function renderServiceStar() {
     let star = ''

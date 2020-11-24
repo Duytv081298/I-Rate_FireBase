@@ -16,13 +16,12 @@
     "fetchSpec": "^1.1.0"
   },
   "_requiredBy": [
-    "#USER",
-    "/"
+    "#USER"
   ],
   "_resolved": "https://registry.npmjs.org/cordova-plugin-compat/-/cordova-plugin-compat-1.2.0.tgz",
   "_shasum": "0bc65757276ebd920c012ce920e274177576373e",
   "_spec": "cordova-plugin-compat@^1.1.0",
-  "_where": "C:\\Users\\Bug\\Documents\\Phonegap\\Test",
+  "_where": "C:\\Users\\Bug\\Documents\\Fall 2020\\Project\\Thu\\I-Rate",
   "author": {
     "name": "Apache Software Foundation"
   },
